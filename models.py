@@ -4,6 +4,7 @@ from keras.activations import softmax
 from keras.models import Model
 from keras.layers.merge import concatenate
 from keras.layers.normalization import BatchNormalization
+from keras.utils import multi_gpu_model
 
 
 def get_ESIM_model(nb_words, embedding_dim, embedding_matrix, recurrent_units, dense_units, dropout_rate, max_sequence_length, out_size):
@@ -60,6 +61,8 @@ def get_ESIM_model(nb_words, embedding_dim, embedding_matrix, recurrent_units, d
 
     model = Model(inputs=[input_q1_layer, input_q2_layer], output=output)
     adam_optimizer = keras.optimizers.Adam(lr=1e-3, decay=1e-6, clipvalue=5)
-    model.compile(loss='binary_crossentropy', optimizer=adam_optimizer, metrics=['binary_crossentropy', 'accuracy'])
+    parallel_model = multi_gpu_model(model, gpus=2)
+    parallel_model.compile(loss='binary_crossentropy', optimizer=adam_optimizer, metrics=['binary_crossentropy',
+                                                                                          'accuracy'])
 
-    return model
+    return parallel_model
