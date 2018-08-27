@@ -69,12 +69,12 @@ def train():
     if not os.path.exists(pm.model_path):
         os.makedirs(pm.model_path)
 
-    # model = get_ESIM_model(pm.MAX_NB_WORDS, pm.EMBEDDING_DIM, data_loader.embedding_matrix,
-    #                        pm.RECURRENT_UNITS, pm.DENSE_UNITS, pm.DROPOUT_RATE,
-    #                        pm.MAX_SEQUENCE_LENGTH, 1)
-    model = get_ESIM_model(pm.MAX_NB_WORDS, pm.EMBEDDING_DIM, None,
+    model = get_ESIM_model(pm.MAX_NB_WORDS, pm.EMBEDDING_DIM, data_loader.embedding_matrix,
                            pm.RECURRENT_UNITS, pm.DENSE_UNITS, pm.DROPOUT_RATE,
                            pm.MAX_SEQUENCE_LENGTH, 1)
+    # model = get_ESIM_model(pm.MAX_NB_WORDS, pm.EMBEDDING_DIM, None,
+    #                        pm.RECURRENT_UNITS, pm.DENSE_UNITS, pm.DROPOUT_RATE,
+    #                        pm.MAX_SEQUENCE_LENGTH, 1)
     print(model.summary())
 
     models, val_loss, total_auc, fold_predictions = train_folds(data_loader.q1_sequences,

@@ -52,7 +52,7 @@ jieba.add_word('wiki地址', tag='n')
 class Dataloader(object):
     def __init__(self):
         self.q1_data, self.q2_data, self.label = self.read_dataset(pm.train_data_path)
-        # self.embedding_index = self.load_pretrain_embedding(pm.embedding_path)
+        self.embedding_index = self.load_pretrain_embedding(pm.embedding_path)
         if pm.clean_data:
             if pm.remove_stopwords:
                 self.ignored_word = self.load_clean_words(pm.clean_path)
@@ -62,7 +62,7 @@ class Dataloader(object):
             for text in self.q2_data:
                 self.cleaned_q2_data.append(self.clean_data(text))
         self.q1_sequences, self.q2_sequences, self.word_index = self.tokenizer()
-        # self.embedding_matrix = self.prepare_embedding_matrix()
+        self.embedding_matrix = self.prepare_embedding_matrix()
 
     def read_dataset(self, train_path):
         train = pd.read_csv(train_path)

@@ -10,10 +10,10 @@ from keras.utils import multi_gpu_model
 def get_ESIM_model(nb_words, embedding_dim, embedding_matrix, recurrent_units, dense_units, dropout_rate, max_sequence_length, out_size):
     embedding_layer = Embedding(nb_words,
                                 embedding_dim,
-                                embeddings_initializer='uniform',
-                                # weights=[embedding_matrix],
+                                # embeddings_initializer='uniform',
+                                weights=[embedding_matrix],
                                 input_length=max_sequence_length,
-                                trainable=True)
+                                trainable=False)
 
     input_q1_layer = Input(shape=(max_sequence_length,), dtype='int32', name='q1')
     input_q2_layer = Input(shape=(max_sequence_length,), dtype='int32', name='q2')
