@@ -63,11 +63,7 @@ class Dataloader(object):
             for text in self.q2_data:
                 self.cleaned_q2_data.append(self.clean_data(text))
         self.q1_sequences, self.q2_sequences, self.word_index = self.tokenizer()
-<<<<<<< HEAD
         self.nb_words, self.embedding_matrix = self.prepare_embedding_matrix()
-=======
-        self.embedding_matrix = self.prepare_embedding_matrix()
->>>>>>> 7fd62157b89495c374c043a213b00878f518b046
 
     def read_dataset(self, train_path):
         train = pd.read_csv(train_path)
