@@ -75,11 +75,7 @@ def train():
     if not os.path.exists(pm.model_path):
         os.makedirs(pm.model_path)
 
-<<<<<<< HEAD
     model = get_ESIM_model(data_loader.nb_words + 1, pm.EMBEDDING_DIM, data_loader.embedding_matrix,
-=======
-    model = get_ESIM_model(pm.MAX_NB_WORDS, pm.EMBEDDING_DIM, data_loader.embedding_matrix,
->>>>>>> 7fd62157b89495c374c043a213b00878f518b046
                            pm.RECURRENT_UNITS, pm.DENSE_UNITS, pm.DROPOUT_RATE,
                            pm.MAX_SEQUENCE_LENGTH, 1)
     # model = get_ESIM_model(pm.MAX_NB_WORDS, pm.EMBEDDING_DIM, None,
