@@ -62,11 +62,7 @@ def get_ESIM_model(nb_words, embedding_dim, embedding_matrix, recurrent_units, d
     model = Model(inputs=[input_q1_layer, input_q2_layer], output=output)
     adam_optimizer = keras.optimizers.Adam(lr=1e-3, decay=1e-6, clipvalue=5)
     parallel_model = multi_gpu_model(model, gpus=2)
-<<<<<<< HEAD
+
     parallel_model.compile(loss='binary_crossentropy', optimizer=adam_optimizer, metrics=['binary_crossentropy', 'accuracy'])
-=======
-    parallel_model.compile(loss='binary_crossentropy', optimizer=adam_optimizer, metrics=['binary_crossentropy',
-                                                                                          'accuracy'])
->>>>>>> 7fd62157b89495c374c043a213b00878f518b046
 
     return parallel_model
